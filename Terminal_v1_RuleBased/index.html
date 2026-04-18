@@ -1,0 +1,133 @@
+---
+
+### 2. `index.html` (The Web Frontend)
+This file goes in the root directory. GitHub Pages will use this to generate your live demo website. 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>வழுவறு (Vazhuvaru) - Tamil NLP Tools</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px auto; max-width: 800px; background-color: #ffffff; color: #222222; padding: 0 20px; }
+        h1 { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 40px; }
+        h2 { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
+        .project-section { margin-bottom: 50px; padding: 20px; border: 1px solid #cccccc; background-color: #fcfcfc; }
+        textarea { width: 100%; height: 100px; margin-top: 10px; padding: 10px; font-size: 16px; box-sizing: border-box; border: 1px solid #999999; resize: vertical; }
+        button { margin-top: 15px; padding: 10px 20px; font-size: 14px; cursor: pointer; background-color: #eeeeee; border: 1px solid #999999; font-weight: bold; }
+        button:hover { background-color: #dddddd; }
+        .output-box { margin-top: 20px; padding: 15px; min-height: 80px; border: 1px dashed #999999; background-color: #ffffff; white-space: pre-wrap; font-family: "Courier New", Courier, monospace; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+    <h1>வழுவறு (Vazhuvaru)</h1>
+
+    <div class="project-section">
+        <h2>v1: Rule-Based Tamil Spell Checker (O(1) Dictionary Lookup)</h2>
+        <p>A pure data-structure approach to identifying unknown Tamil tokens.</p>
+        <textarea id="input1" placeholder="Enter Tamil text here... (e.g., வணக்கம் அம்மா புத்தகம்ம)"></textarea>
+        <button onclick="runRuleBasedCheck()">Check Spelling</button>
+        <div id="output1" class="output-box">Awaiting text input...</div>
+    </div>
+
+    <div class="project-section">
+        <h2>v2: AI-Powered Grammar Checker (Gemini API Integration)</h2>
+        <p>Context-aware grammatical analysis and correction using Generative AI.</p>
+        <textarea id="input2" placeholder="Enter Tamil text here... (e.g., அவன் நேத்து வந்தான். புத்தகம்ம எங்கே?)"></textarea>
+        <button onclick="runAICheck()">Analyze Grammar</button>
+        <div id="output2" class="output-box">Awaiting text input...</div>
+    </div>
+
+    <script>
+        // v1: Logic mapped from Java implementation
+        const dictionary = new Set(["அம்மா", "வணக்கம்", "தமிழ்", "பள்ளி", "மாணவன்", "புத்தகம்", "நன்றி"]);
+
+        function getEditDistance(s1, s2) {
+            const costs = new Array(s2.length + 1);
+            for (let i = 0; i <= s1.length; i++) {
+                let lastValue = i;
+                for (let j = 0; j <= s2.length; j++) {
+                    if (i === 0) costs[j] = j;
+                    else if (j > 0) {
+                        let newValue = costs[j - 1];
+                        if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
+                            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+                        }
+                        costs[j - 1] = lastValue;
+                        lastValue = newValue;
+                    }
+                }
+                if (i > 0) costs[s2.length] = lastValue;
+            }
+            return costs[s2.length];
+        }
+
+        function runRuleBasedCheck() {
+            const input = document.getElementById('input1').value;
+            const output = document.getElementById('output1');
+            if(input.trim() === "") { output.innerText = "Please enter some text."; return; }
+
+            let resultText = "--- Analysis Results ---\n\n";
+            const words = input.split(/\s+/);
+
+            words.forEach(word => {
+                const cleanedWord = word.replace(/[.,!?]/g, "");
+                if (!cleanedWord) return;
+
+                if (dictionary.has(cleanedWord)) {
+                    resultText += `${cleanedWord} : Correct\n`;
+                } else {
+                    resultText += `${cleanedWord} : Incorrect/Unknown\n`;
+                    let found = false;
+                    let suggestions = "  Suggestions: ";
+                    
+                    dictionary.forEach(dictWord => {
+                        if (getEditDistance(cleanedWord, dictWord) <= 2) {
+                            suggestions += dictWord + " ";
+                            found = true;
+                        }
+                    });
+                    
+                    if (!found) suggestions += "No close matches found.";
+                    resultText += suggestions + "\n";
+                }
+            });
+            output.innerText = resultText;
+        }
+
+        // v2: API Integration Logic mapped from Java HttpClient
+        async function runAICheck() {
+            const input = document.getElementById('input2').value;
+            const output = document.getElementById('output2');
+            if(input.trim() === "") { output.innerText = "Please enter some text."; return; }
+
+            output.innerText = "Analyzing with Gemini AI...\n(Please wait...)";
+
+            // SECURE THIS API KEY VIA GOOGLE AI STUDIO RESTRICTIONS BEFORE PUSHING TO GITHUB
+            const apiKey = "YOUR_GEMINI_API_KEY_HERE"; 
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+            const prompt = "Analyze this Tamil sentence for spelling and grammar errors. If there are mistakes, point out exactly where and how to correct them in English: " + input;
+
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+
+                const data = await response.json();
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    output.innerText = "Result:\n" + data.candidates[0].content.parts[0].text;
+                } else {
+                    output.innerText = "Error parsing response. Check API Quota or network.";
+                }
+            } catch (error) {
+                output.innerText = "System Error: " + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
