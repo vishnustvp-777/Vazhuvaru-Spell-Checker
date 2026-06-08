@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans Tamil', Arial, sans-serif; font-size: 14px; background: #f0f0f0; color: #222; }
+    #header { background: #a72a00; color: #fff; padding: 0; }
+    #header-inner { max-width: 900px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 14px; }
+    #logo-box { background: #a72a00; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif Tamil', serif; font-size: 26px; color: #e4e9ec; flex-shrink: 0; }
+    #header-text h1 { font-family: 'Noto Serif Tamil', serif; font-size: 22px; font-weight: 600; color: #fff; }
+    #header-text p { font-size: 12px; color: #fff; margin-top: 2px; }
+    #nav { background: #a87e02; }
+    #nav-inner { max-width: 900px; margin: 0 auto; padding: 0 16px; display: flex; }
+    #nav a { display: inline-block; padding: 7px 16px; color: #bee3f8; text-decoration: none; font-size: 13px; border-right: 1px solid #f1f2f5; }
+    #nav a:first-child { border-left: 1px solid #c50606; }
+    #nav a:hover, #nav a.active { background: #870000; color: #fff; }
+    #main { max-width: 900px; margin: 0 auto; padding: 16px; }
+    .section-box { background: #fff; border: 1px solid #b0b0b0; margin-bottom: 14px; }
+    .section-head { background: #e8e8e8; border-bottom: 1px solid #b0b0b0; padding: 6px 10px; font-size: 13px; font-weight: 600; color: #333; }
+    .section-body { padding: 12px 14px; font-size: 13px; line-height: 1.8; color: #333; }
+    .section-body h3 { font-family: 'Noto Serif Tamil', serif; font-size: 15px; color: #880202; margin: 10px 0 4px; }
+    .section-body p { margin-bottom: 8px; }
+    .section-body code { background: #f0f0f0; border: 1px solid #ccc; padding: 1px 5px; font-size: 12px; font-family: monospace; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+    th { background: #e8e8e8; border: 1px solid #b0b0b0; padding: 6px 8px; text-align: left; }
+    td { border: 1px solid #d0d0d0; padding: 6px 8px; }
+    #footer { background: #a72a00; color: #fafcfd; font-size: 11px; text-align: center; padding: 10px; margin-top: 24px; }
+    #footer a { color: #e6eaed; }
+  </style>
+</head>
+<body>
+<div id="header">
+  <div id="header-inner">
+    <div id="logo-box">வ</div>
+    <div id="header-text">
+      <h1>வழுவறு</h1>
+      <p>Cut the Mistakes! &nbsp;|&nbsp; Tamil Spell Checker</p>
+    </div>
+  </div>
+</div>
+<div id="nav">
+  <div id="nav-inner">
+    <a href="index.html">Checker</a>
+    <a href="about.html" class="active">About</a>
+    <a href="https://github.com/vishnustvp-777/Vazhuvaru_Spell_Checker" target="_blank">GitHub</a>
+    <a href="kavithai.html">என் கவிதை (Poetry)</a>
+    <a href="https://vishnustvp-777.github.io" target="_blank">Portfolio</a>
+  </div>
+</div>
+<div id="main">
+
+  <div class="section-box">
+    <div class="section-head">About Vazhuvaru</div>
+    <div class="section-body">
+      <h3>Technology</h3>
+      <p>Javascript , Html:</p>
+      <table>
+        <tr><th>அகராதி</th><th>சொல் எண்ணிக்கை</th><th>விளக்கம்</th></tr>
+        <tr><td>மூல சொல் அகராதி</td><td>~2,000</td><td>அடிப்படை தமிழ் சொற்கள்</td></tr>
+        <tr><td>விகுதி வடிவ அகராதி</td><td>~8,000+</td><td>வேற்றுமை உருபுகள் மற்றும் விகுதி வடிவங்கள்</td></tr>
+      </table>
+      <p style="margin-top:8px;">பரிந்துரைகள் <strong>லெவென்ஷ்டைன் தூரக் கணக்கீடு</strong> (Levenshtein edit distance) மூலம் கணக்கிடப்படுகின்றன.</p>
+
+      <h3>வரம்புகள் / Limitations</h3>
+      <p>இந்தக் கருவி மூல சொல் வடிவங்களையும் பொதுவான விகுதி வடிவங்களையும் சரிபார்க்கிறது. மிகவும் சிக்கலான கூட்டு சொற்கள், சரியான பெயர்கள், மற்றும் அரிதான வடிவங்கள் தவறாக கொடிகாட்டப்படலாம்.</p>
+
+      <h3>Developer</h3>
+      <p><strong>Vishnu Priyan S T</strong> — Final year B.Tech Mechatronics, Sri Manakula Vinayagar Engineering College, Puducherry.<br>
+
+      <h3>License</h3>
+      <p>GNU Affero General Public License v3.0 — Fully open source.</p>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="section-box" style="margin-top: 16px;">
+  <div class="section-head">System Architecture (High-Level Design)</div>
+  <div class="section-body" style="text-align: center; padding: 20px;">
+    <!-- The max-width: 100% ensures the image shrinks to fit mobile screens perfectly -->
+    <img src="High_Level_Design_Diagram/vazhuvaru_hld.png" alt="Vazhuvaru High Level Design Diagram" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+    
+    <p style="margin-top: 12px; font-size: 13px; color: #555; text-align: left;">
+      This diagram illustrates the frontend data flow, dictionary loading mechanism, and the NLP rule-based execution pipeline of the Vazhuvaru spell-checker engine.
+    </p>
+  </div>
+</div>
+
+<div id="footer">
+  வழுவறு &copy; 2026 &nbsp;|&nbsp;
+</div>
+</body>
+</html>
