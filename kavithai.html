@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>என் கவிதை</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600&family=Noto+Serif+Tamil:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans Tamil', Arial, sans-serif; font-size: 14px; background: #f0f0f0; color: #222; display: flex; flex-direction: column; min-height: 100vh; }
+    #header { background: #c50606; color: #fff; padding: 0; }
+    #header-inner { max-width: 900px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 14px; }
+    #logo-box { background: #c50606; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif Tamil', serif; font-size: 26px; color: #e4e9ec; flex-shrink: 0; }
+    #header-text h1 { font-family: 'Noto Serif Tamil', serif; font-size: 22px; font-weight: 600; color: #fff; }
+    #header-text p { font-size: 12px; color: #bee3f8; margin-top: 2px; }
+    
+    #nav { background: #c50606; }
+    #nav-inner { max-width: 900px; margin: 0 auto; padding: 0 16px; display: flex; }
+    #nav a { display: inline-block; padding: 7px 16px; color: #bee3f8; text-decoration: none; font-size: 13px; border-right: 1px solid #f1f2f5; }
+    #nav a:first-child { border-left: 1px solid #c50606; }
+    #nav a:hover, #nav a.active { background: #870000; color: #fff; }
+    
+    #main { max-width: 900px; margin: 0 auto; padding: 16px; flex: 1; width: 100%; display: flex; flex-direction: column; }
+    .section-box { background: #fff; border: 1px solid #b0b0b0; display: flex; flex-direction: column; flex: 1; }
+    .section-head { background: #e8e8e8; border-bottom: 1px solid #b0b0b0; padding: 6px 10px; font-size: 13px; font-weight: 600; color: #333; display: flex; justify-content: space-between; align-items: center;}
+    .section-body { flex: 1; display: flex; flex-direction: column; }
+    
+    #footer { background: #c50606; color: #fafcfd; font-size: 11px; text-align: center; padding: 10px; margin-top: auto; }
+    #footer a { color: #e6eaed; }
+  </style>
+</head>
+<body>
+
+<div id="header">
+  <div id="header-inner">
+    <div id="logo-box">வ</div>
+    <div id="header-text">
+      <h1>வழுவறு</h1>
+      <p>Cut the Mistakes! &nbsp;|&nbsp; Tamil Spell Checker</p>
+    </div>
+  </div>
+</div>
+
+<div id="nav">
+  <div id="nav-inner">
+    <a href="index.html">Checker</a>
+    <a href="about.html">About</a> 
+    <a href="https://github.com/vishnustvp-777/vazhuvaru" target="_blank">GitHub</a>
+    <a href="kavithai.html" class="active">என் கவிதை (Poetry)</a>
+    <a href="https://vishnustvp-777.github.io/">Portfolio</a>
+  </div>
+</div>
+
+<div id="main">
+  <div class="section-box">
+    <div class="section-head">
+      <span>என் கவிதைகள் (Original Works)</span>
+      <a href="kavithai.pdf" target="_blank" style="color: #c50606; text-decoration: none; font-size: 12px; font-weight: normal;">Open in new tab ↗</a>
+    </div>
+    <div class="section-body">
+      <!-- Embed the PDF using the object tag -->
+<object data="kavithai.pdf" type="application/pdf" width="100%" height="600px" style="border: none; flex: 1;">
+  <p style="padding: 20px;">Your browser does not support viewing PDFs directly. <a href="kavithai.pdf" style="color: #c50606;">Click here to download the PDF.</a></p>
+</object>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
